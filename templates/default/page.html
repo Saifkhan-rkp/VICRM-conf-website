@@ -1,0 +1,339 @@
+{% load static %} {% load bootstrap4 %} {% load i18n %} {% get_current_language
+as language_code %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>VICRM</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %} " rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"/>
+    <link href="{% static 'assets/css/styles.css' %}" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/commonStyle.css' %}" rel="stylesheet" />
+    <style>#footer {
+        background: #101522;
+        padding: 0 0 25px 0;
+        color: #eee;
+        font-size: 14px;
+      }
+      
+      #footer .footer-top {
+        background: #040919;
+        padding: 60px 0 30px 0;
+      }
+      
+      #footer .footer-top .footer-info {
+        margin-bottom: 30px;
+      }
+      
+      #footer .footer-top .footer-info h3 {
+        font-size: 26px;
+        margin: 0 0 20px 0;
+        padding: 2px 0 2px 0;
+        line-height: 1;
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        color: #fff;
+      }
+      
+      #footer .footer-top .footer-info img {
+        height: 40px;
+        margin-bottom: 10px;
+      }
+      
+      #footer .footer-top .footer-info p {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 0;
+        font-family: "Raleway", sans-serif;
+        color: #fff;
+      }
+      
+      #footer .footer-top .social-links a {
+        display: inline-block;
+        background: #222636;
+        color: #eee;
+        line-height: 1;
+        margin-right: 4px;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      #footer .footer-top .social-links a i {
+        line-height: 0;
+        font-size: 16px;
+      }
+      
+      #footer .footer-top .social-links a:hover {
+        background: #f82249;
+        color: #fff;
+      }
+      
+      #footer .footer-top h4 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #f82249;
+      }
+      
+      #footer .footer-top .footer-links {
+        margin-bottom: 30px;
+      }
+      
+      #footer .footer-top .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      #footer .footer-top .footer-links ul i {
+        padding-right: 5px;
+        color: #f82249;
+        font-size: 18px;
+      }
+      
+      #footer .footer-top .footer-links ul li {
+        border-bottom: 1px solid #262c44;
+        padding: 10px 0;
+      }
+      
+      #footer .footer-top .footer-links ul li:first-child {
+        padding-top: 0;
+      }
+      
+      #footer .footer-top .footer-links ul a {
+        color: #eee;
+      }
+      
+      #footer .footer-top .footer-links ul a:hover {
+        color: #f82249;
+      }
+      
+      #footer .footer-top .footer-contact {
+        margin-bottom: 30px;
+      }
+      
+      #footer .footer-top .footer-contact p {
+        line-height: 26px;
+      }
+      
+      #footer .footer-top .footer-newsletter {
+        margin-bottom: 30px;
+      }
+      
+      #footer .footer-top .footer-newsletter input[type="email"] {
+        border: 0;
+        padding: 6px 8px;
+        width: 65%;
+      }
+      
+      #footer .footer-top .footer-newsletter input[type="submit"] {
+        background: #f82249;
+        border: 0;
+        width: 35%;
+        padding: 6px 0;
+        text-align: center;
+        color: #fff;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      
+      #footer .footer-top .footer-newsletter input[type="submit"]:hover {
+        background: #e0072f;
+      }
+      
+      #footer .copyright {
+        text-align: center;
+        padding-top: 30px;
+      }
+      
+      #footer .credits {
+        text-align: center;
+        font-size: 13px;
+        color: #ddd;
+      }
+    
+      
+      </style>
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center header-inner">
+      <div class="container-fluid container-xxl d-flex align-items-center">
+        <div id="logo" class="me-auto">
+          <!-- Uncomment below if you prefer to use a text logo -->
+          <!-- <h1><a href="index.html">The<span>Event</span></a></h1> <img src="assets/img/logo.png" alt="" title="">-->
+          <a href="/" class="scrollto" style="font-size: 30px">VICRM-2021</a>
+        </div>
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}'#about"
+                >About the Conference</a
+              >
+            </li>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}#supporters"
+                >Sponsors</a
+              >
+            </li>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}#speakers"
+                >Speakers</a
+              >
+            </li>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}#schedule"
+                >Schedule</a
+              >
+            </li>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}#venue"
+                >Location</a
+              >
+            </li>
+            <li>
+              <a class="nav-link scrollto" href="{% url 'home' %}#contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+        <a class="buy-tickets scrollto" {% if request.user.is_authenticated %} href="accounts/log-out">LogOut
+          {% else %}
+          href="accounts/sign-up" >
+          Login
+          {% endif %}</a>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+      <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+        <h1 class="mb-4 pb-0">
+          {% block heroheading %}{% endblock heroheading %}
+        </h1>
+        <p class="mb-4 pb-0">
+          {% block heroSheading %}{% endblock heroSheading %}
+        </p>
+        <!--<a href="#about" class="about-btn scrollto">About The Event</a>-->
+      </div>
+    </section>
+
+    <!-- End Hero Section -->
+    <div class="container-fluid mt-3">
+      {% bootstrap_messages %} {% block content %} No content. {% endblock%}
+    </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 footer-info">
+              <img src="assets/img/logo.png" alt="VICRM" />
+              <p>Conference Website</p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bi bi-chevron-right"></i>
+                  <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <i class="bi bi-chevron-right"></i> <a href="#">About us</a>
+                </li>
+                <li>
+                  <i class="bi bi-chevron-right"></i> <a href="#">Services</a>
+                </li>
+                <li>
+                  <i class="bi bi-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bi bi-chevron-right"></i>
+                  <a href="#">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong>VICRM</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by
+          <a href="">CM/IF Dept. Govrnment Polytechnic, Bramhapuri</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End  Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <script src="{% static 'assets/vendor/jquery/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    {% comment %} <script src="{% static 'assets/js/ie10-viewport-bug-workaround.js' %}"></script> {% endcomment %}
+  </body>
+</html>
