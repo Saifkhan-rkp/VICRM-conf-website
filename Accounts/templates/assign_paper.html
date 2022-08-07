@@ -1,0 +1,53 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_chair_reviewer_applicaiton.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style_general.css' %}">
+{% endblock %}
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroheading %}Reviewers{% endblock %}
+{% block restBody %}
+    <div id="divMainContainer">
+        <div class="divTableContainer divChildHalfSpace">
+        {% comment %} <h2>Reviewers</h2> {% endcomment %}
+        <table class="table table-lg table-dark" cellspacing="10">
+            <tr>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            {% for reviewer_assign in reviewers_assigns %}
+
+                <tr>
+
+                    <td>
+                        {{ reviewer_assign.0.email }}
+                    </td>
+                    <td>
+                        {{ reviewer_assign.0.name }}
+                    </td>
+                    <td>
+                    {%  if not reviewer_assign.1 %}
+                        <a href="assign_paper_handle?reviewer_email={{ reviewer_assign.0.email }}&paper_id={{ paper_id }}&conf_name={{ conf_name }}">Assign</a>
+                    {% else %}
+                        Already assigned
+                    {% endif %}
+                    </td>
+
+
+                </tr>
+
+
+            {% endfor %}
+        </table>
+
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,132 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_conference.css' %}">
+{% endblock %}
+
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroheading %}Your Conference{% endblock %}
+
+{% block restBody %}
+<section class="container" data-aos="fade-up">
+    <div id="divPaperMainContainer">
+        <div id="divPaperListContainer" class="divChildHalfSpace">
+            <table class="table table-sm table-dark" cellspacing="10">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        Author email
+                    </th>
+                    {% if chair_hashed_user_type == user_type %}
+                    <th>
+                        Assign to a Reviewer
+                    </th>
+                    {% endif %}
+                    {% if chair_hashed_user_type == user_type %}
+                    <th>
+                        See review
+                    </th>
+                    {% endif %}
+                    {% if chair_hashed_user_type == user_type %}
+                    <th>
+                        Accept
+                    </th>
+                    {% endif %}
+                    {% if chair_hashed_user_type == user_type %}
+                    <th>
+                        Reject
+                    </th>
+                    {% endif %}
+                </tr>
+                {% for submit in submits %}
+
+                        <tr>
+                            <td>
+                                {{ submit.0.paper.name }}
+                            </td>
+                            <td>
+                                    <p style="border-radius:10px;color:#fff;background:{% if submit.0.submit_status in pending %}
+                                        #777;
+                                        {% endif %}
+
+                                        {% if submit.0.submit_status in rejected %}
+                                        #af1e01;
+                                        {% endif %}
+                                            {% if submit.0.submit_status in accepted %}
+                                        #229954;
+                                        {% endif %}">
+
+
+                                {{ submit.0.submit_status }}
+                                    </p>
+
+                            </td>
+                            <td>
+                                {{ submit.0.author.name }}
+                            </td>
+                            <td>
+                                <a href="mailto:{{ submit.0.author.email }}">email</a>
+                            </td>
+                            {% if chair_hashed_user_type == user_type %}
+                            <td>
+                                <a href="assign_paper?paper_id={{ submit.0.paper.id }}&conf_name={{ conf_name }}">Assign</a>
+                            </td>
+                            {% endif %}
+                            {% if chair_hashed_user_type == user_type %}
+                            <td>
+                                <a href="paper_reviews?paper_id={{ submit.0.paper.id }}">See reviews</a>
+                            </td>
+                            {% endif %}
+                            <td>
+                            {% if chair_hashed_user_type == user_type and submit.0.submit_status not in accept_strings %}
+                                {% if submit.1 %}
+                                <a style="background: #4CAF50 " href="accept_reject_paper?is_accepted=True&submit_id={{ submit.0.id }}&conf_name={{ conf_name }}">Accept</a>
+                                    {% else %}
+                                    <p>Author has not uploaded a paper yet.</p>
+                                {% endif %}
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if chair_hashed_user_type == user_type and submit.0.submit_status not in reject_strings %}
+                                {% if submit.1 %}
+                                <a style="background: #af1e01 " href="accept_reject_paper?is_accepted=False&submit_id={{ submit.0.id }}&conf_name={{ conf_name }}">Reject</a>
+                                {% endif %}
+                            {% endif %}
+                            </td>
+
+                        </tr>
+
+
+                {% endfor %}
+            </table>
+
+        </div>
+        <div id="divPaperSubmitContainer" class="divChildHalfSpace">
+            {% if user_type == author_hashed_user_type%}
+            <form id="formSubmitPaper" action="submit_paper" method="post">
+            {% csrf_token %}
+                <div class="divInputContainer"><p>Name : </p>
+                    <select name="paper_id">
+                        {% for paper in available_papers %}
+                            <option value="{{ paper.id }}">{{ paper.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="hidden" name="conf_name" value="{{ conf_name }}">
+                <button id="buttonFormAddConference" type="submit">Submit Paper</button>
+            </form>
+            {% endif %}
+
+        </div>
+
+    </div>
+    </section>
+{% endblock %}

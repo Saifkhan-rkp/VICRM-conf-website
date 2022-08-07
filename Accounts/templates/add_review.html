@@ -1,0 +1,34 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_signup_login_form.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style_general.css' %}">
+{% endblock %}
+
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroheading %} Reviewers{% endblock %}
+
+{% block restBody %}
+    <p>{{ message }}</p>
+    <div class="divFormContainer">
+        <div class="divLoginSignup">
+            <form action="{% if review %}
+            edit_review_handle
+            {% else %}
+            add_review_handle
+            {% endif %}" method="post">
+            {% csrf_token %}
+                <p>Your Review</p>
+                <textarea name="review_text">{% if is_paper == "True" %}{{ review.review_text_paper }}{% else %}{{ review.review_text_abstract }}{% endif %}</textarea>
+
+                    <input type="hidden" name="review_id" value="{{ review_id }}">
+                    <input type="hidden" name="paper_id" value="{{ paper_id }}">
+                    <input type="hidden" name="is_paper" value="{{ is_paper }}">
+
+                <input type="submit" value="Okay!">
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

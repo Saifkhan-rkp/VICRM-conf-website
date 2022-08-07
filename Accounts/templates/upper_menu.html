@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VICRM</title>
+    {% block head %}
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_general.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style_upper_menu.css' %}">
+
+</head>
+
+
+<body>
+    <div id="divMenuContainer">
+        <a href="/">Home</a>
+        <a href="conferences">Conferences</a>
+        {% if islogged_in == False %}
+        <a href="login">Log in</a>
+        {% endif %}
+        {% if islogged_in == True %}
+        <a href="logout">Log out</a>
+        {% endif %}
+        {% if is_admin_logged_in %}
+            <a href="chair_reviewer_application">Applications</a>
+            {%  elif user_type == "ba78a4b507e20f7d159503078770b0b1e3865e8ab6a9a85ab49a5486" %}
+            <a href="author_papers">Your papers</a>
+            {%  elif user_type == "4f0373fb264a3a25bc997596ab16e6de0dbfca018ebefca11e9f1492" %}
+            <a href="reviewer_assignments">Your review assignments</a>
+            {% else %}
+            <a href="sign_up" {% if islogged_in == True %}
+            style="visibility: hidden;"
+        {% endif %}>Sign up</a>
+        {% endif %}
+
+
+
+    </div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+  <link rel="stylesheet" href="{% static '/css/style_signup_login_form.css' %}">
+{% endblock %}
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroSheading %} Login{% endblock %}
+{% block restBody %}
+    <p>{{ message }}</p>
+   
+        <div class="divLoginSignup"  >
+            <form action="login_handle" method="post"    >
+            {% csrf_token %}
+                <input type="text" placeholder="e-mail" name="email"  >
+                 <br>
+                <input type="password" placeholder="password" name="password"  >
+                 <br>
+
+                <input type="submit" value="Log in">
+            </form>
+        </div>
+    
+
+{% endblock %} 

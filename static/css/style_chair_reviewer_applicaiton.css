@@ -1,0 +1,23 @@
+.acceptedUserButton {
+    padding: 10px;
+    background: #4CAF50;
+    border-radius: 10px;
+    color: white;
+}
+
+.rejectedUserButton {
+    padding: 10px;
+    background: #af1e01;
+    border-radius: 10px;
+    color: white;
+}
+#divAdminAcceptChairReviewerMainContainer{
+    display :flex;
+    flex-direction: row;
+}
+.divTableContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-grow: 1;
+}

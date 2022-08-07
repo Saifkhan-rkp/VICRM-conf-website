@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{{setters.site_title}}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  {% load static %}
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %} " rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center header-inner">
+    <div class="container-fluid container-xxl d-flex align-items-center">
+
+      <div id="logo" class="me-auto">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="index.html">The<span>Event</span></a></h1> <img src="assets/img/logo.png" alt="" title="">-->
+        <a href="index.html" class="scrollto">VICRM-2021</a>
+      </div>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About the Conference</a></li>
+
+          {% if is_admin_logged_in %}
+          <li><a class="nav-link scrollto" href="chair_reviewer_application">Applications</a></li>
+          {% elif user_type == "ba78a4b507e20f7d159503078770b0b1e3865e8ab6a9a85ab49a5486" %}
+          <li><a class="nav-link scrollto" href="author_papers">Your papers</a></li>
+          {% elif user_type == "4f0373fb264a3a25bc997596ab16e6de0dbfca018ebefca11e9f1492" %}
+          <li><a class="nav-link scrollto" href="reviewer_assignments">Your review assignments</a></li>
+          {% else %}
+          {% comment %} <a href="sign_up" {% if islogged_in == True %} style="visibility: hidden;" {% endif %}>Sign up</a>
+          {% endcomment %}
+          <li><a class="nav-link scrollto" href="#supporters">Sponsors</a></li>
+          <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+          <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+          <li><a class="nav-link scrollto" href="#venue">Location</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
+          {% endif %}
+
+        </ul>
+
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a class="buy-tickets scrollto" {% if islogged_in == False %} href="login">Login/SignUp
+        {% elif islogged_in == True %}
+        href="logout">Logout
+        {% else %}
+        >
+        {% endif %}
+      </a>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="mb-4 pb-0">{{setters.hero_title|safe|escape}}</h1>
+      <p class="mb-4 pb-0">{{setters.hero_subtitle}}</p>
+      <!--<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>-->
+      <a href="#about" class="about-btn scrollto">About The Conference</a>
+    </div>
+  </section><!-- End Hero Section -->
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>About The Conference</h2>
+            <p>Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut
+              accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in
+              est ut optio sequi unde.</p>
+            <a href="About_Conference">Read More</a>
+          </div>
+          <div class="col-lg-3">
+            <h3>Where</h3>
+            <p>Downtown Conference Center, New York</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>When</h3>
+            <p>Monday to Wednesday<br>10-12 December</p>
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Section -->
+    <!-- ======= Sponsors Section ======= -->
+    <section id="supporters" class="section-with-bg">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Sponsors</h2>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 h-100" data-aos="zoom-in" data-aos-delay="100">
+        {% for spnc in sponcer %}
+          <div class="col">
+            <div class="card text-center align-items-center">
+              <img src="/Uploads/{{spnc.Sponcer_logo}} " class="card-img-top" alt="{{spnc.Name}}">
+              <div class="card-body">
+                <h5 class="card-title"><a href="{{spnc.Sponcer_contact_link}}">{{spnc.Name}}</a></h5>
+                <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p> -->
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </section><!-- End Sponsors Section -->
+
+
+    <!-- ======= Speakers Section ======= -->
+    <section id="speakers">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Event Speakers</h2>
+          <p>Here are some of our speakers</p>
+        </div>
+        <div class="row">
+          {% for spkr in speaker %}
+          <div class="col-lg-4 col-md-6 h-50">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+              <img src="/Uploads/{{spkr.Speaker_Image}} " alt="Speaker 4" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">{{spkr.Speaker_Name}}</a></h3>
+                <p>{{spkr.Speaker_Position}}</p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href="{{spkr.FB_link}}"><i class="bi bi-facebook"></i></a>
+                  <a href="{{spkr.personal_link}}"><i class="bi bi-person-bounding-box"></i></a>
+                  <a href="{{spkr.linkdin_link}}"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section><!-- End Speakers Section -->
+
+    <!-- ======= Schedule Section ======= -->
+    <section id="schedule" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Conference Schedule</h2>
+          <p>Here is our event schedule</p>
+        </div>
+
+        <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+          <li class="nav-item">
+            <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Day 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Day 2</a>
+          </li>
+        </ul>
+
+        <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
+          necessitatibus voluptatem quis labore perspiciatis quia.</h3>
+
+        <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+          <!-- Schdule Day 1 -->
+          <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>09:30 AM</time></div>
+              <div class="col-md-10">
+                <h4>Registration</h4>
+                <p>Fugit voluptas iusto maiores temporibus autem numquam magnam.</p>
+              </div>
+            </div>
+
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>02:00 PM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/1.jpg' %}" alt="Jack Christiansen">
+                </div>
+                <h4>Qui non qui vel amet culpa sequi. <span>Jack Christiansen</span></h4>
+                <p>Nam ex distinctio voluptatem doloremque suscipit iusto.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>03:00 PM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/5.jpg' %}" alt="Alejandrin Littel">
+                </div>
+                <h4>Quos ratione neque expedita asperiores. <span>Alejandrin Littel</span></h4>
+                <p>Eligendi quo eveniet est nobis et ad temporibus odio quo.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>04:00 PM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/6.jpg' %}" alt="Willow Trantow">
+                </div>
+                <h4>Quo qui praesentium nesciunt <span>Willow Trantow</span></h4>
+                <p>Voluptatem et alias dolorum est aut sit enim neque veritatis.</p>
+              </div>
+            </div>
+
+          </div>
+          <!-- End Schdule Day 1 -->
+
+          <!-- Schdule Day 2 -->
+          <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>10:00 AM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/1.jpg' %}" alt="Brenden Legros">
+                </div>
+                <h4>Libero corrupti explicabo itaque. <span>Brenden Legros</span></h4>
+                <p>Facere provident incidunt quos voluptas.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>11:00 AM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img2.jpg' %}" alt="Hubert Hirthe">
+                </div>
+                <h4>Et voluptatem iusto dicta nobis. <span>Hubert Hirthe</span></h4>
+                <p>Maiores dignissimos neque qui cum accusantium ut sit sint inventore.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>12:00 AM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/3.jpg' %}" alt="Cole Emmerich">
+                </div>
+                <h4>Explicabo et rerum quis et ut ea. <span>Cole Emmerich</span></h4>
+                <p>Veniam accusantium laborum nihil eos eaque accusantium aspernatur.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>02:00 PM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/4.jpg' %}" alt="Jack Christiansen">
+                </div>
+                <h4>Qui non qui vel amet culpa sequi. <span>Jack Christiansen</span></h4>
+                <p>Nam ex distinctio voluptatem doloremque suscipit iusto.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>03:00 PM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/5.jpg' %}" alt="Alejandrin Littel">
+                </div>
+                <h4>Quos ratione neque expedita asperiores. <span>Alejandrin Littel</span></h4>
+                <p>Eligendi quo eveniet est nobis et ad temporibus odio quo.</p>
+              </div>
+            </div>
+
+            <div class="row schedule-item">
+              <div class="col-md-2"><time>04:00 PM</time></div>
+              <div class="col-md-10">
+                <div class="speaker">
+                  <img src="{% static 'assets/img/speakers/6.jpg' %}" alt="Willow Trantow">
+                </div>
+                <h4>Quo qui praesentium nesciunt <span>Willow Trantow</span></h4>
+                <p>Voluptatem et alias dolorum est aut sit enim neque veritatis.</p>
+              </div>
+            </div>
+
+          </div>
+          <!-- End Schdule Day 2 -->
+
+
+        </div>
+
+      </div>
+
+    </section><!-- End Schedule Section -->
+
+
+    <section id="venue">
+
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Location</h2>
+          <p>Conference venue location info</p>
+        </div>
+
+        <div class="row g-0">
+          <div class="col-lg-6 venue-map">
+            {% comment %} <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14937.961904548964!2d79.83058688465574!3d20.60885543102229!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xabb9e21040e6ea21!2sGovernment%20Polytechnic%2C%20Bramhapuri!5e0!3m2!1sen!2sin!4v1624736526368!5m2!1sen!2sin"
+              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> {% endcomment %}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14937.961904548964!2d79.83058688465574!3d20.60885543102229!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xabb9e21040e6ea21!2sGovernment%20Polytechnic%2C%20Bramhapuri!5e0!3m2!1sen!2sin!4v1624736526368!5m2!1sen!2sin"
+              frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+
+          <div class="col-lg-6 venue-info">
+            <div class="row justify-content-center">
+              <div class="col-11 col-lg-8 position-relative">
+                <h3>Govrnment Polytechnic, Bramhapuri</h3>
+                <p>Bramhapuri is a Taluka Place in Chandrapur district of Maharashtra State. It is about 120 KM from
+                  Nagpur ,on Nagpur Gadchiroli highway no. 269.: Govt. Poly. Bramhapuri started functioning from 24th
+                  Sept. 1985 .</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      
+    </section><!-- End Venue Section -->
+
+  </main>
+
+  
+<!-- ======= Buy Ticket Section ======= --> 
+    <section id="buy-tickets" class="section-with-bg"> 
+      <div class="container" data-aos="fade-up"> 
+ 
+        <div class="section-header"> 
+          <h2>Buy Tickets</h2> 
+          <p>There are various categories for various proffession.</p> 
+        </div> 
+ 
+        <div class="row"> 
+        {% for ticket in tickets %}
+          <!-- Pro Tier --> 
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300"> 
+            <div class="card"> 
+              <div class="card-body"> 
+                <h5 class="card-title text-muted text-uppercase text-center">For {{ticket.Category_Name}}</h5> 
+                <h6 class="card-price text-center">Rs.{{ticket.Price}}</h6> 
+                <hr> 
+                <ul class="fa-ul"> 
+                {{ticket.Specification|safe|escape}} 
+                </ul> 
+                <hr> 
+                <div class="text-center"> 
+                  <button type="button" class="btn" onclick="location.href ='{{ticket.payment_link}}';">Buy Now</button> 
+                </div> 
+ 
+              </div> 
+            </div> 
+          </div> 
+          {% endfor %}
+        </div> 
+ 
+      </div> 
+ 
+      <!-- Modal Order Form     data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="premium-access"
+      <div id="buy-ticket-modal" class="modal fade"> 
+        <div class="modal-dialog" role="document"> 
+          <div class="modal-content"> 
+            <div class="modal-header"> 
+              <h4 class="modal-title">Buy Tickets</h4> 
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+            </div> 
+            <div class="modal-body"> 
+              <form method="POST" action="#"> 
+                <div class="form-group"> 
+                  <input type="text" class="form-control" name="your-name" placeholder="Your Name"> 
+                </div> 
+                <div class="form-group mt-3"> 
+                  <input type="text" class="form-control" name="your-email" placeholder="Your Email"> 
+                </div> 
+                <div class="form-group mt-3"> 
+                  <select id="ticket-type" name="ticket-type" class="form-select"> 
+                    <option value="">-- Select Your Ticket Type --</option> 
+                    <option value="standard-access">Standard Access</option> 
+                    <option value="pro-access">Pro Access</option> 
+                    <option value="premium-access">Premium Access</option> 
+                  </select> 
+                </div> 
+                <div class="text-center mt-3"> 
+                  <button type="submit" class="btn">Buy Now</button> 
+                </div> 
+              </form> 
+            </div> 
+          </div> /.modal-content  
+        </div><! /.modal-dialog 
+      </div><! /.modal --> 
+ 
+    </section><!-- End Buy Ticket Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <img src="assets/img/logo.png" alt="TheEvenet">
+            <p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro.
+              Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore
+              consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Address <br>
+              <strong>Phone:</strong>{{setters.footer_contact_no}} <br>
+              <strong>Email: </strong> {{setters.footer_contact_mail}} <br>
+            </p>
+
+            <div class="social-links">
+              <a href="{{setters.footer_tweeter_link}}" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="{{setters.footer_FB_link}}" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="{{setters.footer_insta_link}}" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="{{setters.footer_gleplus_link}}" class="google-plus"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>VICRM</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="">CM/IF Dept. Govrnment Polytechnic, Bramhapuri</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

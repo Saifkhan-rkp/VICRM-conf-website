@@ -1,0 +1,45 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_chair_reviewer_applicaiton.css' %}">
+{% endblock %}
+
+{% block hrstyle %}style='height: 30vh'{% endblock hrstyle %}
+{% comment %} {% block heroheading %}Your Conference{% endblock %} {% endcomment %}
+
+{% block section2 %}
+    <div id="divMainContainer">
+        <div style="display: flex; justify-content: center;flex-direction: column;width: 100%;">
+
+            <div style="display: flex;flex-direction: row">
+                <div style="display: flex;flex-direction: column;flex-basis: 50%;">
+                    <h2 style="text-align: center">Abstract Review</h2>
+                    <p style="text-align: center">
+                        {% if review.review_text_abstract %}
+                            {{ review.review_text_abstract }}
+                        {% else %}
+                            No review
+                        {% endif %}
+
+                    </p>
+                </div>
+
+
+                <div style="display: flex;flex-direction: column;flex-basis: 50%;">
+                    <h2 style="text-align: center">Paper Review</h2>
+                    <p style="text-align: center">
+                    {% if review.review_text_paper %}
+                            {{ review.review_text_paper }}
+                        {% else %}
+                            No review
+                        {% endif %}
+                </p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+{% endblock %}

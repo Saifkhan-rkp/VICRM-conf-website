@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block heroheading %}About the<br><span>Conference</span>{% endblock heroheading %}
+{% block section2 %}
+
+<section class="container" data-aos="fade-up">
+    {% for model in about %}
+    <div class="section-header">
+        <h2>{{model.heading}}</h2>
+    </div>
+    <div>
+    <p>{{model.detail}}</p>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock section2 %}

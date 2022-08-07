@@ -1,0 +1,87 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_conferences.css' %}">
+{% endblock %}
+{% block section2 %}
+<section class="container" data-aos="fade-up">
+    <div class="divMainContainer">
+        <div class="divChildHalfSpace">
+            <table  class="table table-sm table-dark" cellspacing="10">
+                <tr>
+                    <th>
+                        Start Time
+                    </th>
+                    <th>
+                        End Time
+                    </th>
+                    <th>
+                        Paper Name
+                    </th>
+                    <th>
+                        Unschedule
+                    </th>
+
+
+                </tr>
+                {% for scheduled_paper in scheduled_papers%}
+
+
+                            {% if scheduled_paper.0 == None %}
+                                <tr>
+                                <td colspan="4" style="background: #805a65;color: #fff;border-radius: 10px;">
+                                    <p style="flex-basis: 33%;">Coffee Break</p>
+                                    <p style="flex-basis: 33%;">{{ scheduled_paper.1 }}</p>
+                                    <p style="flex-basis: 33%;">{{ scheduled_paper.2 }}</p>
+                                </td>
+                                {% else %}
+                                <tr>
+                                <td>
+                                {{ scheduled_paper.1 }}
+                            </td>
+                            <td>
+                                {{ scheduled_paper.2 }}
+                            </td>
+                            <td>
+                                {{ scheduled_paper.0.name }}
+                            </td>
+                            <td>
+                                <a href="unschedule_paper_handle?conf_name={{ conf_name }}&paper_id={{ scheduled_paper.0.id }}">Unschedule Paper</a>
+                            </td>
+                            {% endif %}
+
+                        </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+        <div class="divChildHalfSpace">
+            <table class="table table-sm table-dark" cellspacing="10">
+                <tr>
+                    <th>
+                        Paper Name
+                    </th>
+                    <th>
+                        Schedule
+                    </th>
+
+
+                </tr>
+                {% for unscheduled_paper in unscheduled_papers%}
+                        <tr>
+
+                            <td>
+                                {{ unscheduled_paper.name }}
+                            </td>
+                            <td>
+                                <a href="schedule_paper_handle?conf_name={{ conf_name }}&paper_id={{ unscheduled_paper.id }}">Schedule Paper</a>
+                            </td>
+                        </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</section>
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static '/js/js_conferences.js' %}"></script>
+{% endblock %}

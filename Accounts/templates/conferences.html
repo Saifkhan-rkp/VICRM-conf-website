@@ -1,0 +1,99 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+     <link rel="stylesheet" href="{% static '/css/style_conferences.css' %}">
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroSheading %}Schedules{% endblock %}
+{% endblock %}
+{% block restBody %}
+     <div id="divConferenceMainContainer">
+        <div id="divConferenceListContainer" class="divChildHalfSpace"> 
+            <table class="table table-sm table-dark" cellspacing="10">
+                <tr>
+                    <th scope="col">
+                        Name
+                    </th>
+                    <th scope="col">
+                        Start Date
+                    </th>
+                    <th scope="col">
+                        End Date
+                    </th>
+                    <th scope="col">
+                        Abstract Submission Deadline
+                    </th>
+                    <th scope="col">
+                        Paper Submission Deadline
+                    </th>
+                    <th scope="col">
+                        Review Deadline
+                    </th scope="col">
+                    {% if user_type == chair_hashed_user_type and is_accepted%}
+                        <th scope="col">
+                            Schedule
+                        </th>
+                    {% endif %}
+                </tr>
+                {% for conf in confs %}
+
+                        <tr>
+
+                            <td>
+                                <a href="conference?conf_name={{ conf.name }}">{{ conf.name }}</a>
+                            </td>
+                            <td>
+                                {{ conf.start_date }}
+                            </td>
+                            <td>
+                                {{ conf.end_date }}
+                            </td>
+                            <td>
+                                {{ conf.abstract_submission_deadline }}
+                            </td>
+                            <td>
+                                {{ conf.paper_submission_deadline }}
+                            </td>
+                        <td>
+                                {{ conf.review_deadline }}
+                            </td>
+                            {% if user_type == chair_hashed_user_type and is_accepted and conf.review_deadline < time_now%}
+                            <th>
+                                <a href="schedule_conference?conf_name={{ conf.name }}">Schedule Conference</a>
+                            </th>
+                            {% endif %}
+
+
+                        </tr>
+
+
+                {% endfor %}
+            </table>
+
+        </div>
+        {% endblock %}
+        {% block section2 %}
+        <section class="container" data-aos="fade-up">
+         <div id="divConferenceAddContainer" class="divChildHalfSpace">
+            {% if user_type == chair_hashed_user_type and is_accepted%}
+            <form id="formAddConference" action="add_conference_handle" method="post">
+            {% csrf_token %}
+                <div class="divInputContainer"><p>Name : </p><input type="text" placeholder="name" name="name"></div>
+                <div class="divInputContainer"><p>Abstract Submission Deadline : </p><input type="datetime-local" name="abstract_submission_deadline" max="2035-06-14T00:00"></div>
+                <div class="divInputContainer"><p>Paper Submission Deadline : </p><input type="datetime-local" name="paper_submission_deadline" max="2035-06-14T00:00"></div>
+                <div class="divInputContainer"><p>Review Deadline : </p><input type="datetime-local" name="review_deadline" max="2035-06-14T00:00"></div>
+                <div class="divInputContainer"><p>Start Date : </p><input type="datetime-local" name="start_date" max="2035-06-14T00:00"></div>
+                <div class="divInputContainer"><p>End Date : </p><input type="datetime-local" name="end_date" max="2035-06-14T00:00"></div>
+                <button id="buttonFormAddConference" type="submit">Okay!</button>
+            </form>
+            {% endif %}
+            {% if user_type == chair_hashed_user_type and not is_accepted %}
+            <p>You have not been accepted as a chair yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static '/js/js_conferences.js' %}"></script>
+    </section>
+        
+        {% endblock section2 %}
+       

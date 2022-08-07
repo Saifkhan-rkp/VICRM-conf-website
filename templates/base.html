@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>VICRM</title>
+  {% block head %}
+  {% endblock %}
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  {% load static %}
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %} " rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/commonStyle.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center header-inner">
+    <div class="container-fluid container-xxl d-flex align-items-center">
+
+      <div id="logo" class="me-auto">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="index.html">The<span>Event</span></a></h1> <img src="assets/img/logo.png" alt="" title="">-->
+        <a href="index.html" class="scrollto">VICRM-2021</a>
+      </div>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="index">Home</a></li>
+          <li><a class="nav-link scrollto" href="index#about">About</a></li>
+          
+          {% if is_admin_logged_in %}
+            <li><a class="nav-link scrollto" href="conferences">Schedule of Conferences</a></li>
+            <li><a class="nav-link scrollto"<a href="chair_reviewer_application">Applications</a></li>
+
+            {%  elif user_type == "ba78a4b507e20f7d159503078770b0b1e3865e8ab6a9a85ab49a5486" %}
+            <li><a class="nav-link scrollto" href="conferences">Schedule of Conferences</a></li>
+            <li><a class="nav-link scrollto"<a href="author_papers">Your papers</a></li>
+
+            {%  elif user_type == "4f0373fb264a3a25bc997596ab16e6de0dbfca018ebefca11e9f1492" %}
+            <li><a class="nav-link scrollto" href="conferences">Schedule of Conferences</a></li>
+            <li><a class="nav-link scrollto" href="reviewer_assignments">Your review assignments</a></li>
+
+            {% else %}
+          <li><a class="nav-link scrollto" href="index#supporters">Sponsors</a></li>
+          <li><a class="nav-link scrollto" href="index#speakers">Speakers</a></li>
+          <li><a class="nav-link scrollto" href="index#schedule">Schedule</a></li>
+          <li><a class="nav-link scrollto" href="index#venue">Location</a></li>
+          <li><a class="nav-link scrollto" href="index#contact">Contact</a></li>
+          {% endif %}
+          
+      </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      <a class="buy-tickets scrollto"{% if islogged_in == False %} href="sign_up">SignUp
+        {% elif islogged_in == True %}
+          href="logout">Logout
+        {% else %}
+         >
+        {% endif %}
+      </a>
+
+
+    </div>
+  </header><!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+  <section id="hero"  {% block hrstyle %}
+  {% endblock hrstyle %} >
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="mb-4 pb-0">{% block heroheading %}{% endblock heroheading %}</h1>
+      <p class="mb-4 pb-0">{% block heroSheading %}{% endblock heroSheading %}</p>
+              {% block restBody %}
+  {% endblock restBody %}
+      <!--<a href="#about" class="about-btn scrollto">About The Event</a>-->
+    </div>
+    
+       
+  </section><!-- End Hero Section -->
+  
+    {% block section2 %}{% endblock section2 %}
+  
+
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  
+</body>
+</html>

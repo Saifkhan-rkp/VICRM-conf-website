@@ -1,0 +1,96 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_conference.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style_general.css' %}">
+
+{% endblock %}
+
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroSheading %}Papers{% endblock %}
+
+{% block restBody %}
+    <div id="divPaperMainContainer">
+        <div id="divPaperListContainer" class="divChildHalfSpace">
+            <table class="table table-sm table-dark" cellspacing="10">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Conference
+                    </th>
+                    <th>
+                        Submit Date
+                    </th>
+                    <th>
+                        Submit Status
+                    </th>
+                    <th>
+                        Upload date
+                    </th>
+                </tr>
+                {% for paper_submit in papers_submits %}
+
+                        <tr>
+
+                            <td>
+                                <a href="paper?paper_id={{ paper_submit.0.id }}">{{ paper_submit.0.name }}</a>
+                            </td>
+                            <td>
+                                {{ paper_submit.0.status }}
+                            </td>
+                            <td>
+                                {% if paper_submit.1 %}
+                                {{ paper_submit.1.conference.name }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if paper_submit.1 %}
+                                {{ paper_submit.1.submit_date }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if paper_submit.1 %}
+                                    <p style="border-radius:10px;color:#fff;background:{% if paper_submit.1.submit_status in pending %}
+                                        #777;
+                                        {% endif %}
+
+                                        {% if paper_submit.1.submit_status in rejected %}
+                                        #af1e01;
+                                        {% endif %}
+                                            {% if paper_submit.1.submit_status in accepted %}
+                                        #229954;
+                                        {% endif %}">
+
+
+                                {{ paper_submit.1.submit_status }}
+                                    </p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ paper_submit.0.upload_date }}
+                            </td>
+
+                        </tr>
+
+
+                {% endfor %}
+            </table>
+
+        </div>
+        <div id="divPaperAddContainer" class="divChildHalfSpace">
+            <form action="add_paper_handle" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="divInputContainer"><p>Name : </p><input type="text" placeholder="name" name="name"></div>
+                <div class="divInputContainer"><p>Your abstract file : </p><input type="file" name="abstract_file" ></div>
+                <input type="submit" class="btn btn-dark" value="Okay!">
+            </form>
+        </div>
+    </div>
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static '/js/js_conferences.js' %}"></script>
+{% endblock %}

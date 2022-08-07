@@ -1,0 +1,104 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_chair_reviewer_applicaiton.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style_chair_reviewer_applicaiton.css' %}">
+{% endblock %}
+
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroheading %} Reviewers{% endblock %}
+
+{% block restBody %}
+    <div id="divMainContainer">
+        <div class="table-responsive-md divChildHalfSpace">
+        <!-- <h2>Reviewers</h2> -->
+        <table class="table table-sm-bordered table-dark" cellspacing="10">
+            <tr>
+                <th>
+                    Paper Name
+                </th>
+                <th>
+                    Chair
+                </th>
+                <th>
+                    Conference
+                </th>
+                <th>
+                    Abstract
+                </th>
+                <th>
+                    Paper
+                </th>
+                <th>
+                    Your Abstract Review
+                </th>
+                <th>
+                    Your Paper Review
+                </th>
+            </tr>
+            {% for assignment_review in assignments_reviews %}
+
+                <tr>
+
+                    <td>
+                        {{ assignment_review.0.paper.name }}
+                    </td>
+                    <td>
+                        {{ assignment_review.0.chair.name }}
+                    </td>
+                    <td>
+                        {{ assignment_review.0.conference.name }}
+                    </td>
+                    <td>
+                        <a href="download_file?file_name={{ assignment_review.0.paper.abstract_file_path }}&file_type=abstract">Download</a>
+                    </td>
+                    <td>
+                        {% if assignment_review.2 %}
+                        <a href="download_file?file_name={{ assignment_review.0.paper.paper_file_path }}&file_type=paper">Download</a>
+                            {% else %}
+                            <p>Author has not uploaded a paper yet.</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                    {% if assignment_review.0.conference.paper_submission_deadline < time_now %}
+                        <p>Abstract review deadline has passed.</p>
+                    {% else %}
+                        {%  if not assignment_review.1 %}
+                            <a style="background: #702ae2" href="add_review?is_paper=False&paper_id={{ assignment_review.0.paper.id }}">Make a review</a>
+                        {% else %}
+                            <a href="edit_review?is_paper=False&review_id={{ assignment_review.1.id }}&paper_id={{ assignment_review.0.paper.id }}">Edit your review</a>
+                        {% endif %}
+                    {% endif %}
+
+                    </td>
+
+                    <td>
+
+                    {% if assignment_review.0.conference.review_deadline < time_now %}
+                        <p>Paper review deadline has passed.</p>
+                    {% else %}
+                        {% if assignment_review.2 %}
+                        {%  if assignment_review.1.review_text_paper%}
+                            <a href="edit_review?is_paper=True&review_id={{ assignment_review.1.id }}&paper_id={{ assignment_review.0.paper.id }}">Edit your review</a>
+                        {% else %}
+                            <a style="background: #702ae2" href="add_review?is_paper=True&review_id={{ assignment_review.1.id }}&paper_id={{ assignment_review.0.paper.id }}">Make a review</a>
+
+                        {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+
+
+                    </td>
+
+
+                </tr>
+
+
+            {% endfor %}
+        </table>
+
+        </div>
+
+    </div>
+{% endblock %}

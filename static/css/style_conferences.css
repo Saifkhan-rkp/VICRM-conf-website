@@ -1,0 +1,11 @@
+#divConferenceMainContainer{
+    display: flex;
+    flex-direction: row;
+}
+#divConferenceListContainer{
+    flex-grow: 1;
+}
+#divConferenceAddContainer{
+    flex-grow: 1;
+}
+

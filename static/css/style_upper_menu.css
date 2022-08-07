@@ -1,0 +1,31 @@
+#divMenuContainer{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width : 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#divMenuContainer > a {
+    padding: 10px;
+    font-size: 20px;
+    background: maroon;
+    color: #fff;
+    border-radius: 25%;
+    margin: 1%;
+    text-align: center;
+
+    width : 25%;
+}
+
+#divMenuContainer > a:hover {
+    padding: 10px;
+    font-size: 20px;
+    background: #805a65;
+    color: #fff;
+    border-radius: 25%;
+    margin: 1%;
+    text-align: center;
+
+    width : 25%;
+}

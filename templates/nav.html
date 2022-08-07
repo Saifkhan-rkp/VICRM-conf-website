@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VICRM</title>
+    <link rel="stylesheet" href="css/inStyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&family=Sofia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="/index.html">VICRM-2021</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a  href="/index.html">Home</a></li>
+                    <li><a href="aboutConfr.html">About the Conference</a></li>
+                    <li><a href="./registration.html">Registration</a></li>
+                    <li><a href="./ppr-submsn.html">Paper Submission</a></li>
+                    <li><a href="./schedule.html">Schedule</a></li>
+                    <li><a href="./location.html">Location</a></li>
+                    <li><a href="./contact.html">Contact</a></li> 
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="title">
+            <h2 style="color: aliceblue;">Paper Submission</h2>
+        </div>
+    </section>
+</body>
+</html>
+
+<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+
+              <nav class="nav nav-masthead justify-content-center float-md-end ">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
+
+          <p class="lead">
+      <a href="#" class="btn btn-lg btn-secondary fw-bold border-dark bg-dark">Learn more</a>
+    </p>
+
+
+
+    {% extends 'base.html' %}
+{% block intro %}
+    <h2 style="color: white"> this is heading</h2>
+{% endblock intro %}
+{% block body %}
+ this is /body
+{% endblock body %}

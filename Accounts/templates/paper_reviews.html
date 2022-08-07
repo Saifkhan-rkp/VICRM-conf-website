@@ -1,0 +1,46 @@
+{%extends "base.html" %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style_chair_reviewer_applicaiton.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style_chair_reviewer_applicaiton.css' %}">
+{% endblock %}
+{% block hrstyle %}style='height: 100vh'{% endblock hrstyle %}
+{% block heroSheading %}Reviewers{% endblock %}
+{% block restBody %}
+    <div id="divMainContainer">
+        <div class="divTableContainer divChildHalfSpace">
+        {% comment %} <h2>Reviewers</h2> {% endcomment %}
+        <table class="table table-sm table-dark" cellspacing="20">
+            <tr>
+                <th>
+                    Reviewer Name
+                </th>
+                <th>
+                    See review
+                </th>
+
+            </tr>
+            {% for review in reviews %}
+
+                <tr>
+
+                    <td>
+                        {{ review.reviewer.name }}
+                    </td>
+
+                    <td>
+                        <a href="paper_review?review_id={{ review.id }}">See review</a>
+                    </td>
+
+
+
+                </tr>
+
+
+            {% endfor %}
+        </table>
+
+        </div>
+
+    </div>
+{% endblock %}

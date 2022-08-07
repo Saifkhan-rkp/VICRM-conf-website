@@ -1,0 +1,14 @@
+#divPaperMainContainer{
+    display: flex;
+    flex-direction: row;
+}
+#divPaperListContainer{
+    flex-basis: 50%;
+}
+#divPaperSubmitContainer{
+    flex-basis: 50%;
+}
+
+#divPaperAddContainer{
+    flex-basis: 50%;
+}
